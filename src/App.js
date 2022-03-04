@@ -1,29 +1,33 @@
 import { useState } from "react";
 
 function App() {
-  // 1
+  const [tweetValidation, setTweetValidation] = useState(false);
   const [tweet, setTweet] = useState("");
   const [list, setList] = useState(["Delhi"]);
 
-  // 2
   const handleTweet = (e) => {
     setTweet(e.target.value);
   };
 
   const addNewItem = () => {
+    if (!tweet) {
+      setTweetValidation(true);
+      return;
+    }
+
     let newList = [tweet, ...list];
     setList(newList);
 
-    // Reset
     setTweet("");
+    setTweetValidation(false);
   };
 
   return (
     <div>
       <h1 className="text-primary">Working with List</h1>
 
-      {/**3 */}
       <input
+        className={tweetValidation ? "border border-2 border-danger" : ""}
         type="text"
         id="inputId"
         value={tweet}
