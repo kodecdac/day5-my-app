@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 function App() {
+  const [list, setList] = useState([]);
+
   const makeApiCall = async () => {
     console.log("I am about to make an APIN CALL");
 
@@ -6,14 +10,18 @@ function App() {
     let response = await fetch(url);
     let list = await response.json();
 
-    // in console.
-    console.log(list);
+    // setting the data we got from server
+    setList([...list]);
   };
 
   return (
     <div>
-      <h1>Hello Wordl</h1>
+      <h1>API INtegration</h1>
       <input type="button" value="Make AJAX / API CALL" onClick={makeApiCall} />
+
+      {list.map((item) => (
+        <div>{item.title}</div>
+      ))}
     </div>
   );
 }
