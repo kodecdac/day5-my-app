@@ -24,17 +24,31 @@ function App() {
 
   return (
     <div>
-      <h1 className="text-primary">Working with List</h1>
+      <h1 className="bg-dark text-light p-3">Tweet App</h1>
 
-      <input
-        className={tweetValidation ? "border border-2 border-danger" : ""}
-        type="text"
-        id="inputId"
-        value={tweet}
-        placeholder="Lets tweet here.."
-        onChange={handleTweet}
-      />
-      <input type="button" value="Add New Item" onClick={addNewItem} />
+      <div>
+        <input
+          className={
+            tweetValidation
+              ? "border border-2 border-danger form-control form-control-lg"
+              : "form-control form-control-lg"
+          }
+          style={{ height: "72px" }}
+          type="text"
+          id="inputId"
+          value={tweet}
+          placeholder="Lets tweet here.."
+          onChange={handleTweet}
+        />
+      </div>
+      <div>
+        <input
+          className="btn btn-lg btn-secondary w-100 mt-1"
+          type="button"
+          value="Add New Item"
+          onClick={addNewItem}
+        />
+      </div>
 
       {tweetValidation && (
         <div>
@@ -45,9 +59,7 @@ function App() {
       )}
 
       {list.map((item) => (
-        <div>
-          <input type="checkbox" /> {item}
-        </div>
+        <div className="alert alert-secondary fs-3">{item}</div>
       ))}
     </div>
   );
