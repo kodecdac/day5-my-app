@@ -1,23 +1,32 @@
 import { useState } from "react";
 
 function App() {
+  let [tweet, setTweet] = useState("");
   let [list, setList] = useState(["Delhi"]);
 
-  const addNewItem = () => {
-    // DOM !STrictly NO!
-    let newItem = document.querySelector("#inputId").value;
+  const handleTweet = (e) => {
+    setTweet(e.target.value);
+  };
 
-    let newList = [newItem, ...list];
+  const addNewItem = () => {
+    let newList = [tweet, ...list];
     setList(newList);
 
-    document.querySelector("#inputId").value = "";
+    // Reset
+    setTweet("");
   };
 
   return (
     <div>
       <h1 className="text-primary">Working with List</h1>
 
-      <input type="text" id="inputId" />
+      <input
+        type="text"
+        id="inputId"
+        value={tweet}
+        placeholder="Lets tweet here.."
+        onChange={handleTweet}
+      />
       <input type="button" value="Add New Item" onClick={addNewItem} />
 
       {list.map((item) => (
