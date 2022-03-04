@@ -36,6 +36,14 @@ function App() {
       />
       <input type="button" value="Add New Item" onClick={addNewItem} />
 
+      {tweetValidation && (
+        <div>
+          <span className="text-danger " style={{ fontSize: "12px" }}>
+            Tweet can not be blank
+          </span>
+        </div>
+      )}
+
       {list.map((item) => (
         <div>
           <input type="checkbox" /> {item}
