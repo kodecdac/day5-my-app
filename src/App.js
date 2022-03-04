@@ -4,6 +4,7 @@ function App() {
   let [list, setList] = useState(["Delhi"]);
 
   const addNewItem = () => {
+    // DOM !STrictly NO!
     let newItem = document.querySelector("#inputId").value;
 
     let newList = [newItem, ...list];
