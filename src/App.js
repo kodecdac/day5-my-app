@@ -2,8 +2,8 @@ import { useState } from "react";
 
 function App() {
   // 1
-  let [tweet, setTweet] = useState("");
-  let [list, setList] = useState(["Delhi"]);
+  const [tweet, setTweet] = useState("");
+  const [list, setList] = useState(["Delhi"]);
 
   // 2
   const handleTweet = (e) => {
