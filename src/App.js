@@ -22,10 +22,10 @@ function App() {
 
   return (
     <div>
-      <h1>API INtegration</h1>
+      <h1 className="bg-dark text-light p-3 sticky-top">API Integration</h1>
 
       {list.map((item) => (
-        <div>{item.title}</div>
+        <div className="alert alert-secondary mb-1 fs-4">{item.title}</div>
       ))}
     </div>
   );
