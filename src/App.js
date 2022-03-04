@@ -1,7 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   const [list, setList] = useState([]);
+
+  // USE CASE THIS FOR INTILISATION
+  useEffect(() => {
+    console.log("I m constructor ;; Java programmer");
+    makeApiCall();
+  }, []);
 
   const makeApiCall = async () => {
     console.log("I am about to make an APIN CALL");
@@ -17,7 +23,6 @@ function App() {
   return (
     <div>
       <h1>API INtegration</h1>
-      <input type="button" value="Make AJAX / API CALL" onClick={makeApiCall} />
 
       {list.map((item) => (
         <div>{item.title}</div>
