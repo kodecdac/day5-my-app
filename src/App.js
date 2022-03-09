@@ -5,13 +5,24 @@ function App() {
 
   const makeApiCall = async () => {
     console.log("I am about to make an APIN CALL");
+    try {
+      // Axios
+      const url = "https://jsonplaceholder.typicode.com/postss";
+      let response = await fetch(url);
+      console.log(response);
 
-    const url = "https://jsonplaceholder.typicode.com/posts";
-    let response = await fetch(url);
-    let list = await response.json();
+      if (response.status == 200) {
+        let list = await response.json();
 
-    // setting the data we got from server
-    setList([...list]);
+        // setting the data we got from server
+        setList([...list]);
+      } else {
+        console.log("Server Error");
+      }
+    } catch (e) {
+      // handle error / reject use cases
+      console.log(e);
+    }
   };
 
   return (
