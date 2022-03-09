@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 
 function App() {
   const [list, setList] = useState([]);
@@ -7,11 +8,8 @@ function App() {
     console.log("I am about to make an APIN CALL");
 
     const url = "https://jsonplaceholder.typicode.com/posts";
-    let response = await fetch(url);
-    let list = await response.json();
-
-    // setting the data we got from server
-    setList([...list]);
+    const response = await axios.get(url);
+    setList([...response.data]); // UI WILL GET RERENDER
   };
 
   return (
@@ -19,8 +17,8 @@ function App() {
       <h1>API INtegration</h1>
       <input type="button" value="Make AJAX / API CALL" onClick={makeApiCall} />
 
-      {list.map((item) => (
-        <div>{item.title}</div>
+      {list.map((item, index) => (
+        <div key={item.id}>{item.title}</div>
       ))}
     </div>
   );
