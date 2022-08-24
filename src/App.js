@@ -1,40 +1,18 @@
-import { useState } from "react";
-import axios from "axios";
+import { useRef } from "react";
 
 function App() {
-  const [list, setList] = useState([]);
+  const inputRef = useRef();
 
-  const makeApiCall = async () => {
-    try {
-      console.log("I am about to make an APIN CALL for ORDER API");
-
-      const url = "http://localhost:8080/order/";
-      const config = {
-        method: "get",
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjaW5pIiwiaXNzIjoiY2RhYyIsImlhdCI6MTY0NjgwNDk4NiwiZXhwIjoxNjQ2ODA4NTg2fQ.dRgO0TP3PeqCg1fOid3EDlQ9fswON02YPIqY9RNjZc2_Mpwx9zHgBBnmXhkA77cwn9_9AkO3aRJR7yycHubCFA",
-        },
-      };
-
-      const response = await axios.get(url, config);
-      console.log(response);
-      setList([...response.data]); // UI WILL GET RERENDER
-    } catch (err) {
-      console.log(err);
-    }
+  const callMe = () => {
+    console.log("Hello World");
+    console.log(inputRef.current.value);
   };
 
   return (
     <div>
       <h1>API INtegration</h1>
-      <input type="button" value="Make AJAX / API CALL" onClick={makeApiCall} />
-
-      {list.map((item, index) => (
-        <div key={item.id}>
-          {item.productName} / {item.productPrice}
-        </div>
-      ))}
+      <input type="text" ref={inputRef} />
+      <input type="button" value="Handle Click Event" onClick={callMe} />
     </div>
   );
 }
