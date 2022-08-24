@@ -1,7 +1,41 @@
 import { useState } from "react";
 import { useRef } from "react";
+import {
+  BrowserRouter,
+  Link,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 
 function App() {
+  return (
+    <BrowserRouter>
+      <Link to="/page1">Page1</Link> | <Link to="/page2">Page2</Link>
+      <Routes>
+        <Route path="/" element={<Page1 />} />
+        <Route path="/page1" element={<Page1 />} />
+        <Route path="/page2" element={<Page2 />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+function Page2() {
+  const navigate = useNavigate();
+  return (
+    <div>
+      <h1>Page2 </h1>
+      <input
+        type="button"
+        value="Go to Page1"
+        onClick={() => navigate("/page1")}
+      />
+    </div>
+  );
+}
+
+function Page1() {
   const inputRef = useRef();
   const [userName, setUserName] = useState("hello");
 
